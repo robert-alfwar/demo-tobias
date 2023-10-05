@@ -21,7 +21,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           echo $REPO_NAME
-          echo "${{ github.env.REPO_NAME }}"
+          echo ${{ env.REPO_NAME }}
 
       - name: Dump GitHub context
         env:
