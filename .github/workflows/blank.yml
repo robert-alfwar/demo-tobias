@@ -1,0 +1,24 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main  # Trigger this workflow on push to the main branch
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get lowercase repository name
+        run: |
+          repo_name=$(echo "${{ github.repository }}" | awk '{print tolower($0)}')
+          echo "REPO_NAME=$repo_name" >> $GITHUB_ENV
+
+      - name: Build and push Docker image
+        run: |
+          echo $REPO_NAME
+          
